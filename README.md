@@ -1,1 +1,1 @@
-# JPost-BN
+# news-scraper
