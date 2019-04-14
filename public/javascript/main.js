@@ -3,6 +3,9 @@ $(document).ready(function() {
   
     //Parallax initialization
     $(".parallax").parallax();
+    
+    //Modal initialization
+    $(".modal").modal();
 
     $("#scrape").on("click", function() {
 
@@ -27,7 +30,6 @@ $(document).ready(function() {
 
 			$(this).text("Article Saved");
       $(this).attr({ disabled: "" });
-      
 
         var savedArticle = {}
         savedArticle.imgSrc = $(this).parent(".card-content").parent(".card-stacked").siblings(".card-image")
@@ -41,14 +43,11 @@ $(document).ready(function() {
           url: '/saved',
           data: savedArticle
         }).then(function(res) {
-
-          //hide the article card and reload the page
-    
+          //Do nothing
         })
     });
 
-
-    $("#articles").on("click", ".deleteArticle", function () {
+    $(document).on("click", ".deleteArticle", function () {
       var id = $(this).data("id");
       $.ajax({
           type: "DELETE",
@@ -58,5 +57,52 @@ $(document).ready(function() {
       });
   });
 
-  }); //End of Document Ready Function
+  $(document).on("click", ".addNote", function () {
+    var id = $(this).data("id");
+    $("#modal1").modal("open"); 
+  });
 
+}); //End of Document Ready Function
+
+
+
+
+  // $.ajax({
+  //   type: "GET",
+  //   url: "/allNotes/" + id
+  //   }).then(function(results) {
+  //     if (results.length !== 0) {
+  //       $("#notesDiv").append(noteCard(results));
+  //     }
+      
+  //   });
+
+
+  //   $(document).on("click", ".addNoteBtn", function(){
+
+  //     var noteText = $("#note-text").val().trim();
+  //     var id = $(this).data("id");
+      
+  //       $.ajax({
+  //         type: "POST",
+  //         url: "/notes",
+  //         data: {
+  //             text: noteText,
+  //             id: id
+  //         }
+  //     }).then(function(results) {
+  //       //do nothing
+  //     })
+    
+  //   });
+
+
+
+  // function noteCard(results) {
+  //   var noteCard = "<div class='col s12 m7'><div class='card horizontal'><div class='card-stacked'>" + 
+  //                  "<div class='card-content'><p>" + results.text + "</p>" +
+  //                  "<a class='waves-effect waves-light btn right'>Delete Note</a></div></div></div></div>";
+  
+  //                  return noteCard;
+  // }
+  

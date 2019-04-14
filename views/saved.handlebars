@@ -24,7 +24,7 @@
                             <div class="card-content">
                                 <h6 class="articleTitle"> {{title}}</h6>
                                 <a class="waves-effect waves-light btn right deleteArticle" data-id="{{_id}}">Delete Article</a>
-                                <a class="waves-effect waves-light btn right addNote">Add a Note</a>
+                                <a class="waves-effect waves-light btn right addNote" data-id="{{_id}}">Add a Note</a>
                                 <div class="clear"></div>
                             </div>
                             <div class="card-action">
@@ -33,7 +33,21 @@
                         </div>
                     </div>
                 </div>
+
             {{/each}}
+            
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h6 id="modalHeader">Add a note</h6>
+                    <div id="notesDiv"></div>
+                    <textarea name="note-text" id="note-text" cols="30" rows="10"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="waves-effect waves-green btn-flat addNoteBtn">Add</a>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
     
         </div>
     </div>

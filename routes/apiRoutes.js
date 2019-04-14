@@ -53,13 +53,47 @@ app.post("/saved", function(req, res) {
 
 app.delete("/delete/:id", function(req, res) {
   var id = req.params.id;
-  console.log(id);
   db.Article.deleteOne({ _id: id }, function(error, data) {
           if (error) {
             console.log(error);
           } else {
             res.json(data);
           }
+      });
+});
+
+
+app.post("/notes", function(req, res) {
+  var text = req.body.text;
+  var id = req.body.id;
+  
+  db.Note.create({ 
+    text: text, 
+    articleId: id
+  }).then(function(note) {
+
+    console.log(note);
+
+    db.Article.findOneAndUpdate(
+      { _id: articleId },
+      { $push: { notes: note._id } },
+      { new: true })
+      .then(function(result) {
+          res.json(result)
+      })
+      .catch(function(error) {
+          res.json(error)
+      });
+
+      }).catch(function(error) {
+          res.json(error);
+      })
+});
+
+app.get("/allNotes/:id", (req, res) => {
+  db.Note.find({_id : req.params.id}, function(error, data) {
+    console.log("NOTES :", data);
+          res.json(data);
       });
 });
 
