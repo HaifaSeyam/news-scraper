@@ -58,51 +58,62 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".addNote", function () {
-    var id = $(this).data("id");
+    
     $("#modal1").modal("open"); 
+
+    var id = $(this).data("id");
+
+    $.ajax({
+      method: "GET",
+      url: "/displayNotes/" + id
+    }).then(function(data) {
+        console.log(data);
+        // If there's a note in the article
+        if (data.note.length !== 0) {
+          $("#notesDiv").append(noteCard(data));
+        }
+      });
+
+
+      $(document).on("click", ".addNoteBtn", function() {
+        var text = $("#note-text").val().trim();
+      
+        $.ajax({
+          method: "POST",
+          url: "/addNotes/" + id,
+          data: {
+            text: text,
+            articleId: id
+          }
+        }).then(function(data) {
+            console.log(data);
+          });
+      
+        // Also, remove the values entered in the input and textarea for note entry
+        $("#note-text").val("");
+      });
+
+
   });
 
+$(document).on("click", ".deletNote", function () {
+  var id = $(this).data("id");
+  $.ajax({
+      type: "DELETE",
+      url: "/deleteNote/" + id,
+  }).then(function(res) {
+      location.reload();
+  });
+});
+
+
+function noteCard(data) {
+  var noteCard = "<div class='col s12 m7'><div class='card horizontal'><div class='card-stacked'>" + 
+                 "<div class='card-content'><p>" + data.text + "</p>" +
+                 "<a class='waves-effect waves-light btn right deletNote' data-id='" + data._id + "'>Delete Note</a></div></div></div></div>";
+
+                 return noteCard;
+}
+
+
 }); //End of Document Ready Function
-
-
-
-
-  // $.ajax({
-  //   type: "GET",
-  //   url: "/allNotes/" + id
-  //   }).then(function(results) {
-  //     if (results.length !== 0) {
-  //       $("#notesDiv").append(noteCard(results));
-  //     }
-      
-  //   });
-
-
-  //   $(document).on("click", ".addNoteBtn", function(){
-
-  //     var noteText = $("#note-text").val().trim();
-  //     var id = $(this).data("id");
-      
-  //       $.ajax({
-  //         type: "POST",
-  //         url: "/notes",
-  //         data: {
-  //             text: noteText,
-  //             id: id
-  //         }
-  //     }).then(function(results) {
-  //       //do nothing
-  //     })
-    
-  //   });
-
-
-
-  // function noteCard(results) {
-  //   var noteCard = "<div class='col s12 m7'><div class='card horizontal'><div class='card-stacked'>" + 
-  //                  "<div class='card-content'><p>" + results.text + "</p>" +
-  //                  "<a class='waves-effect waves-light btn right'>Delete Note</a></div></div></div></div>";
-  
-  //                  return noteCard;
-  // }
-  

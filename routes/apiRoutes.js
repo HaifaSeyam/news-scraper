@@ -62,39 +62,42 @@ app.delete("/delete/:id", function(req, res) {
       });
 });
 
-
-app.post("/notes", function(req, res) {
-  var text = req.body.text;
-  var id = req.body.id;
-  
-  db.Note.create({ 
-    text: text, 
-    articleId: id
-  }).then(function(note) {
-
-    console.log(note);
-
-    db.Article.findOneAndUpdate(
-      { _id: articleId },
-      { $push: { notes: note._id } },
-      { new: true })
-      .then(function(result) {
-          res.json(result)
-      })
-      .catch(function(error) {
-          res.json(error)
-      });
-
-      }).catch(function(error) {
-          res.json(error);
-      })
+app.get("/displayNotes/:id", function(req, res) {
+  db.Article.findOne({ _id: req.params.id })
+    // ..and populate all of the notes associated with it
+    .populate("note")
+    .then(function(dbArticle) {
+      console.log(dbArticle); //note array is empty???
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
 });
 
-app.get("/allNotes/:id", (req, res) => {
-  db.Note.find({_id : req.params.id}, function(error, data) {
-    console.log("NOTES :", data);
-          res.json(data);
+app.post("/addNotes/:id", function(req, res) {
+  db.Note.create(req.body)
+    .then(function(dbNote) {
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { notes: dbNote._id } }, { new: true });
+    })
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
+app.delete("/deleteNote/:id", function(req, res) {
+  var id = req.params.id;
+  db.Note.deleteOne({ _id: id }, function(error, data) {
+          if (error) {
+            console.log(error);
+          } else {
+            res.json(data);
+          }
       });
 });
 
-};
+
+}
