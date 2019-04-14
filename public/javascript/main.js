@@ -17,13 +17,18 @@ $(document).ready(function() {
                             "<div class='card-content'><h6 class='articleTitle'>" + data[i].title + "</h6>" + 
                             "<a class='waves-effect waves-light btn right saveArticle'>Save A rticle</a></div><div class='card-action'>" +
                             "<a class='articleLink' href=" + data[i].link + " target='_blank'>Read on NYT</a></div></div></div></div>";
-                            $('#articles').append(articleCard);
+                            $('#articles').append(articleCard);             
             }
       });
   
     });
 
     $("#articles").on("click", ".saveArticle", function () {
+
+			$(this).text("Article Saved");
+      $(this).attr({ disabled: "" });
+      
+
         var savedArticle = {}
         savedArticle.imgSrc = $(this).parent(".card-content").parent(".card-stacked").siblings(".card-image")
         .children(".articleImg").attr("src");
@@ -40,8 +45,18 @@ $(document).ready(function() {
           //hide the article card and reload the page
     
         })
-    })
+    });
 
+
+    $("#articles").on("click", ".deleteArticle", function () {
+      var id = $(this).data("id");
+      $.ajax({
+          type: "DELETE",
+          url: "/delete/" + id,
+      }).then(function(res) {
+          location.reload();
+      });
+  });
 
   }); //End of Document Ready Function
 

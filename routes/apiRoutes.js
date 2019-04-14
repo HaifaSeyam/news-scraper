@@ -31,7 +31,7 @@ app.get("/scrape", function(req, res) {
     // db.Article.create(articles)
     // .then(function(dbArticle) {
     //   // View the added result in the console
-    //   console.log(dbArticle);
+      console.log(articles);
       res.json(articles);
     })
     .catch(function(err) {
@@ -40,7 +40,6 @@ app.get("/scrape", function(req, res) {
         });
  
     });
-
 
 app.post("/saved", function(req, res) {
     var article = req.body;
@@ -51,4 +50,17 @@ app.post("/saved", function(req, res) {
             res.json(data);
         });
   });
+
+app.delete("/delete/:id", function(req, res) {
+  var id = req.params.id;
+  console.log(id);
+  db.Article.deleteOne({ _id: id }, function(error, data) {
+          if (error) {
+            console.log(error);
+          } else {
+            res.json(data);
+          }
+      });
+});
+
 };

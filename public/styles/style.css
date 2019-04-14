@@ -48,6 +48,12 @@ nav {
 h6 {
     display: inline-block;
 }
+.deleteArticle {
+    margin-left: 5px;
+}
+.clear {
+    clear: both;
+}
 /* Footer styling
 * --------------------------------------- */
 footer {
