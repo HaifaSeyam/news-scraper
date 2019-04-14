@@ -1,0 +1,69 @@
+/* Defining body styles
+* --------------------------------------- */
+body {
+    width: 100%;
+    font-Family: 'Raleway', Sans-Serif;
+    font-Size: 15px;
+    color: #1e5250;
+}
+/* Defining nav bar styles
+* --------------------------------------- */
+nav {
+    background-color: #1e5250;
+    color: white;
+}
+.nav-wrapper {
+    margin: 0 10px;
+}
+/* Defining parallax styles
+* --------------------------------------- */
+.white-text{
+    font-Family: 'Vollkorn', Serif;
+    font-Size: 50px;
+}
+.rowOne {
+    width: 110vw;
+    background: rgba(30,82,80, 0.6);
+    margin: 0;
+}
+.parallax-container {
+    min-height: 100vh;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax img { 
+     width: 10  0vw;
+}
+.card {
+    background-color: #1e5250;
+}
+.card-title {
+    text-align: left;
+}
+#titleLinkPara a {
+    text-align: left;
+    color: white;
+}
+#titleLinkPara {
+    text-align: left;
+}
+#articleImg {
+    width: 250px;
+    height: 140px;
+}
+.card {
+    background: white;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating)  {
+    color: #1e5250;
+    text-transform: none;
+}
+h6 {
+    display: inline-block;
+}
+/* Footer styling
+* --------------------------------------- */
+footer {
+    background-color: #1e5250;
+    color: white;
+}
