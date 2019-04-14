@@ -14,6 +14,24 @@
 <div class="section white content-container">
     <div class="row">
         <div class="col s12">
+            {{#each data}}
+                <div class='col s12'>
+                    <div class='card horizontal'>
+                        <div class='card-image'>
+                            <img class='articleImg' src= '{{imgSrc}}'>
+                        </div>
+                        <div class='card-stacked'>
+                            <div class='card-content'>
+                                <h6 class='articleTitle'> {{title}}</h6>
+                                <a class='waves-effect waves-light btn right addNote'>Add a Note</a>
+                            </div>
+                            <div class='card-action'>
+                                <a class='articleLink' href='{{link}}' target='_blank'>Read on NYT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
     
         </div>
     </div>

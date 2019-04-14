@@ -10,9 +10,18 @@ module.exports = function(app) {
 
     // Load saved articles page
     app.get("/saved", function(req, res) {
-      res.render("saved", {
-        title: "Saved Articles | NYT News Scraper"
-      });
+      db.Article.find({}, function(error, data) {
+        
+        if (error) {
+           console.log(error)
+        } else {
+          res.render("saved", {
+            title: "Saved Articles | NYT News Scraper",
+            data: data
+          });
+        }
+    });
+      
     });
 
 };

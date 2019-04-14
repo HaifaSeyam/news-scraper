@@ -28,16 +28,27 @@ app.get("/scrape", function(req, res) {
 
   }).then(function(articles){
     // Create a new Article using the `result` object built from scraping
-    db.Article.create(articles)
-    .then(function(dbArticle) {
-      // View the added result in the console
-      console.log(dbArticle);
-      res.json(dbArticle);
+    // db.Article.create(articles)
+    // .then(function(dbArticle) {
+    //   // View the added result in the console
+    //   console.log(dbArticle);
+      res.json(articles);
     })
     .catch(function(err) {
       // If an error occurred, log it
       console.log(err);
         });
-  });
+ 
     });
+
+
+app.post("/saved", function(req, res) {
+    var article = req.body;
+    db.Article.create(article, function(error, data) {
+            if (error) {
+               console.log(error)
+            }
+            res.json(data);
+        });
+  });
 };

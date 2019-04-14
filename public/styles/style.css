@@ -34,20 +34,7 @@ nav {
 .parallax img { 
      width: 10  0vw;
 }
-.card {
-    background-color: #1e5250;
-}
-.card-title {
-    text-align: left;
-}
-#titleLinkPara a {
-    text-align: left;
-    color: white;
-}
-#titleLinkPara {
-    text-align: left;
-}
-#articleImg {
+.articleImg {
     width: 250px;
     height: 140px;
 }
