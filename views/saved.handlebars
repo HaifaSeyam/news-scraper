@@ -11,46 +11,25 @@
     </div>
     <div class="parallax"><img src="images/photo-1551800659-1385059c89e5.jpg"></div>
 </div>
+<!--End top parallax-->
+<!--Start first section -->
 <div class="section white content-container">
     <div class="row">
-        <div class="col s12">
-            {{#each data}}
-                <div class="col s12" id="articles">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img class="articleImg" src= "{{imgSrc}}">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h6 class="articleTitle"> {{title}}</h6>
-                                <a class="waves-effect waves-light btn right deleteArticle" data-id="{{_id}}">Delete Article</a>
-                                <a class="waves-effect waves-light btn right addNote" data-id="{{_id}}">Add a Note</a>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="card-action">
-                                <a class="articleLink" href="{{link}}" target="_blank">Read on NYT</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            {{/each}}
-            
-            <!-- Modal Structure -->
-            <div id="modal1" class="modal">
-                <div class="modal-content">
-                    <h6 id="modalHeader">Add a note</h6>
-                    <div id="notesDiv"></div>
-                    <textarea name="note-text" id="note-text" cols="30" rows="10"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class="waves-effect waves-green btn-flat addNoteBtn">Add</a>
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-                </div>
+        <div class="col s12" id="articles">
+            <h4 class="center">Seems you do not have any saved articles yet.</h4>
+        </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h6 id="modalHeader">Add a note</h6>
+                <div id="notesDiv"></div>
+                <textarea name="note-text" id="note-text" cols="30" rows="10"></textarea>
             </div>
-    
+            <div class="modal-footer"></div>
         </div>
     </div>
 </div>
 <!-- End of first section -->
 {{>footer}}
+<!--Saved Javascript File-->
+<script src="javascript/saved.js"></script>

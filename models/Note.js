@@ -8,10 +8,6 @@ var NoteSchema = new Schema({
   text: {
 		type: String,
 		require: true
-	},
-	articleId: {
-		type: Schema.Types.ObjectId,
-		ref: 'Article'
 	}
 });
 
