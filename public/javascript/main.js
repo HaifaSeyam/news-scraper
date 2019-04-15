@@ -70,7 +70,10 @@ $(document).ready(function() {
         console.log(data);
         // If there's a note in the article
         if (data.note.length !== 0) {
-          $("#notesDiv").append(noteCard(data));
+          for (var i = 0 ; i < data.note.length ; i++) {
+            $("#notesDiv").append(noteCard(data.note[i]));
+          }
+          
         }
       });
 
@@ -114,6 +117,5 @@ function noteCard(data) {
 
                  return noteCard;
 }
-
 
 }); //End of Document Ready Function
